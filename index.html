@@ -121,6 +121,24 @@ button {
 #masterVolume {
     width: 200px;
 }
+
+.master-progress-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#masterProgress {
+    flex: 1;
+    height: 20px;
+}
+
+#masterTime {
+    min-width: 110px;
+    text-align: right;
+    font-size: 13px;
+}
 </style>
 </head>
 <body>
@@ -306,6 +324,12 @@ playlist.forEach(trackInfo => {
     const status = document.createElement('div');
     status.className = 'status';
     status.textContent = 'Остановлено';
+
+	const masterProgress =
+    document.getElementById('masterProgress');
+
+const masterTime =
+    document.getElementById('masterTime');
 
     controls.appendChild(playBtn);
     controls.appendChild(stopBtn);
