@@ -131,7 +131,7 @@ button {
 
 #masterProgress {
     flex: 1;
-    height: 20px;
+    cursor: pointer;
 }
 
 #masterTime {
@@ -171,11 +171,7 @@ button {
 			</div>
 			<br>
 			<div class="master-progress-container">
-			<progress
-				id="masterProgress"
-				value="0"
-				max="100">
-			</progress>
+			<input type="range" id="masterProgress" min="0" max="100" value="0">
 
 			<span id="masterTime">
 				00:00 / 00:00
@@ -426,6 +422,21 @@ masterAudio.addEventListener('timeupdate', () => {
             `${formatTime(masterAudio.currentTime)} / ${formatTime(masterAudio.duration)}`;
     }
 
+});
+
+masterPause.addEventListener('click', () => {
+    masterAudio.pause();
+});
+
+masterProgress.addEventListener('input', () => {
+
+    if (!isNaN(masterAudio.duration)) {
+
+        const position =
+            (masterProgress.value / 100) * masterAudio.duration;
+
+        masterAudio.currentTime = position;
+    }
 });
 
 </script>
