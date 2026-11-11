@@ -408,6 +408,26 @@ const masterTime =
 
 });
 
+masterAudio.addEventListener('loadedmetadata', () => {
+
+    masterTime.textContent =
+        `00:00 / ${formatTime(masterAudio.duration)}`;
+
+});
+
+masterAudio.addEventListener('timeupdate', () => {
+
+    if (!isNaN(masterAudio.duration)) {
+
+        masterProgress.value =
+            (masterAudio.currentTime / masterAudio.duration) * 100;
+
+        masterTime.textContent =
+            `${formatTime(masterAudio.currentTime)} / ${formatTime(masterAudio.duration)}`;
+    }
+
+});
+
 </script>
 
 </body>
